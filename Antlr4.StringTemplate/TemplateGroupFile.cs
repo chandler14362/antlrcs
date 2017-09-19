@@ -30,6 +30,8 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+using System;
+
 namespace Antlr4.StringTemplate
 {
     using System.Linq;
@@ -209,10 +211,10 @@ namespace Antlr4.StringTemplate
             get
             {
                 //System.out.println("url of "+fileName+" is "+url.toString());
-                string parent = Path.GetDirectoryName(_url.ToString());
+                var parent = Path.GetDirectoryName(_url.AbsolutePath);
                 try
                 {
-                    return new Uri(parent);
+                    return new Uri(parent, UriKind.Absolute);
                 }
                 catch (UriFormatException mue)
                 {
